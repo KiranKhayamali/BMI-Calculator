@@ -55,7 +55,7 @@ ROOT_URLCONF = 'BMI_calculator.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': ['templates'],
+        'DIRS': ['templates', 'images'],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [

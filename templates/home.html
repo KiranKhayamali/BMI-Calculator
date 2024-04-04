@@ -8,12 +8,34 @@
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 
-    <title>Home Page</title>
+    <!-- <title>Home Page</title> -->
   </head>
   <body>
-    <h1>Home Page</h1>
-    <a href="{% url 'logout' %}" class="btn btn-primary">Logout</a>
-
+    <!-- <h1>Home Page</h1> -->
+    <a href="{% url 'signup' %}" class="btn btn-primary">Signup</a>
+    <img src = "/images/body-mass-index-bmi-chart.jpg">
+    <!-- <style>
+        body {
+          background-image: src = '/images/body-mass-index-bmi-chart.jpg';
+        }
+        </style> -->
+    <p>
+        In the face of a mounting obesity crisis, the BMI calculator has emerged as a crucial population measurement tool. It assesses the connection between your weight and fat, aiding in identifying excess body fat and unraveling the health hazards that come with the extra weight.
+        However, take note: the BMI calculator isn't flawless - it can overestimate for those with a muscular frame and underestimate for the athletically inclined.
+    </p>
+    <p>
+        <h4>    What is BMI?    </h4>
+        BMI is defined as the proportion of a person's weight in kilograms (or pounds) divided by their height in meters (or feet). The presence of a high body mass index is indicative of a high level of body fat. An individual's BMI is used to identify weight categories that may pose a health risk; however, it does not diagnose his or her body fatness or health.BMI does not measure body fat directly, but BMI is moderately correlated with more direct measures of body fat. Furthermore, BMI appears to be as strongly correlated with various metabolic and disease outcome as are these more direct measures of body fatness.
+    </p>
+    <p>
+        <h4>    BMI formula     </h4>
+        For both adults and children, the BMI is calculated according to the formula below:
+    </p><p>
+        BMI in kilograms and meters: weight (kg) / [height (m)]2
+    </p>
+    <p> 
+        BMI in pounds and inches: weight (lb) / [height (in)]2 x 703
+    </p>
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>

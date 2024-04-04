@@ -4,10 +4,10 @@ from django.contrib.auth.models import User
 from django.contrib.auth.decorators import login_required
 
 # Create your views here.
-@login_required(login_url = 'login')
 def HomePage(request):
     return render(request, 'home.html')
 
+@login_required(login_url = 'login')
 def calculate_bmi(request):
     if request.method == 'POST':
         height = float(request.POST['height'])
@@ -20,8 +20,10 @@ def calculate_bmi(request):
             category = 'Normal Weight'
         elif 25 < bmi < 30:
             category = 'Over Weight'
-        else :
+        elif 30 < bmi < 35:
             category = 'Obessity'
+        else :
+            category = 'Extreme Obessity'
         context = {'bmi': round(bmi, 2), 'category': category}
         return render(request, 'outcome.html', context)
     return render(request, 'calculate.html')

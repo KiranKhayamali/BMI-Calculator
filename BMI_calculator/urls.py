@@ -20,8 +20,8 @@ from bmi_app import views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', views.SignupPage, name = 'signup'),
-    path('home/', views.HomePage, name = 'home'),
+    path('', views.HomePage, name = 'home'),
+    path('signup/', views.SignupPage, name = 'signup'),
     path('login/', views.LoginPage, name = 'login'),
     path('calculate/', views.calculate_bmi, name = 'calculate'),
     path('logout/', views.LogoutPage, name='logout'),
