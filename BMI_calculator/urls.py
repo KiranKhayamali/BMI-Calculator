@@ -16,12 +16,13 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
-from bmi_app import views as bv
+from bmi_app import views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('signup/', bv.SignupPage, name = 'signup'),
-    path('login/', bv.LoginPage, name = 'login'),
-    path('', bv.HomePage, name = 'home'),
-    path('calculate/', bv.calculate_bmi, name = 'calculate'),
+    path('', views.SignupPage, name = 'signup'),
+    path('home/', views.HomePage, name = 'home'),
+    path('login/', views.LoginPage, name = 'login'),
+    path('calculate/', views.calculate_bmi, name = 'calculate'),
+    path('logout/', views.LogoutPage, name='logout'),
 ]

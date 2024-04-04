@@ -1,14 +1,12 @@
-from django.shortcuts import render
+from django.shortcuts import render, HttpResponse, redirect
+from django.contrib.auth import login, authenticate, logout
+from django.contrib.auth.models import User 
+from django.contrib.auth.decorators import login_required
 
 # Create your views here.
+@login_required(login_url = 'login')
 def HomePage(request):
     return render(request, 'home.html')
-
-def LoginPage(request):
-    return render(request, 'login.html')
-
-def SignupPage(request):
-    return render(request, 'signup.html')
 
 def calculate_bmi(request):
     if request.method == 'POST':
@@ -27,3 +25,38 @@ def calculate_bmi(request):
         context = {'bmi': round(bmi, 2), 'category': category}
         return render(request, 'outcome.html', context)
     return render(request, 'calculate.html')
+
+def SignupPage(request):
+    if request.method == 'POST':
+        username = request.POST.get('username')
+        email = request.POST.get('email')
+        password1 = request.POST.get('password1')
+        password2 = request.POST.get('password2')
+        if password1 != password2:
+            return HttpResponse("Your password and confirm password are not same.")
+        else:
+            my_user = User.objects.create_user(username,email,password1)
+            my_user.save()
+            return redirect('login') 
+    return render(request, 'signup.html')    
+
+def LoginPage(request):
+    if request.method=='POST':
+        username=request.POST.get('username')
+        passsword=request.POST.get('password')  
+        user=authenticate(request, username=username,password=passsword)
+        if user is not None:
+            login(request,user)
+            bmi_user=user.username
+            return render(request,"calculate.html",{'username':bmi_user})
+        else:
+            return HttpResponse("Wrong Informations!!!")
+            return redirect('home') 
+
+    return render(request, 'login.html')
+
+def LogoutPage(request):
+    logout(request)
+    return redirect('login')
+
+
