@@ -36,12 +36,12 @@ def calculate_bmi(request):
 #     for bmi in history:
 #         print(f"{bmi.date:%B %d, %Y}: {bmi.bmi}")
 
-def user_history(request):
-    user = User.objects.get(username= request.username)
-    history = History.objects.filter(user=user).order_by('-created_at')
-    # display_history(user) 
-    context = {'user': user}
-    return render(request, 'record.html', context)
+# def user_history(request):
+#     user = User.objects.get(username= request.username)
+#     history = History.objects.filter(user=user).order_by('-created_at')
+#     # display_history(user) 
+#     context = {'user': user}
+#     return render(request, 'record.html', context)
 
 def history(request):
     history = History.objects.filter(user=request.user).order_by('-created_at')
