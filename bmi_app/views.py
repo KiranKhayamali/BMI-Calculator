@@ -1,7 +1,8 @@
 from django.shortcuts import render, HttpResponse, redirect
-from django.contrib.auth import login, authenticate, logout
+from django.contrib.auth import login, authenticate, logout, get_user_model
 from django.contrib.auth.models import User 
 from django.contrib.auth.decorators import login_required
+from .models import History
 
 # Create your views here.
 def HomePage(request):
@@ -28,6 +29,25 @@ def calculate_bmi(request):
         return render(request, 'outcome.html', context)
     return render(request, 'calculate.html')
 
+User = get_user_model()
+def display_history(user):
+    history = History.objects.filter(user=user).order_by('-created_at')
+    # print("History:")
+    # for bmi in history:
+    #     print(f"{bmi.date:%B %d, %Y}: {bmi.bmi}")
+
+def user_history(request):
+    user = User.objects.get(username= request.username)
+    history = History.objects.filter(user=user).order_by('-created_at')
+    # display_history(user) 
+    context = {'user': user}
+    return render(request, 'record.html', context)
+
+def history(request):
+    history = History.objects.filter(user=request.user).order_by('-created_at')
+    return render(request, 'record.html', {'history': history})
+#     # return render(request, 'record.html')
+
 def SignupPage(request):
     if request.method == 'POST':
         username = request.POST.get('username')
@@ -50,10 +70,9 @@ def LoginPage(request):
         if user is not None:
             login(request,user)
             bmi_user=user.username
-            return render(request,"calculate.html",{'username':bmi_user})
+            return redirect("calculate")
         else:
-            return HttpResponse("Wrong Informations!!!")
-            return redirect('home') 
+            return redirect('signup') 
 
     return render(request, 'login.html')
 
