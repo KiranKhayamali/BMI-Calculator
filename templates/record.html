@@ -12,25 +12,53 @@
   </head>
   <body>
     <h1> History </h1>
+  
+    <style>
+      table {
+          width: 100%;
+          border-collapse: collapse;
+      }
+      th, td {
+          border: 1px solid #dddddd;
+          text-align: left;
+          padding: 8px;
+      }
+      th {
+          background-color: #f2f2f2;
+      }
+      tr:nth-child(even) {
+          background-color: #f2f2f2;
+      }
+      tr:hover {
+          background-color: #ddd;
+      }
+  </style>
+  
   <table>
-    <thead>
-      <tr>
-        <th>Date</th>
-        <th>BMI</th>
-      </tr>
-    </thead>
-    <tbody>
-      {% for bmi in bmi_app_history %}
-        <tr>
-          <td>{{ bmi.created_at|date:"F d, Y" }}</td>
-          <td>{{ bmi.bmi }}</td>
-        </tr>
-      {% empty %}
-        <tr>
-          <td colspan="2">No BMI history found.</td>
-        </tr>
-      {% endfor %}
-    </tbody>
+      <thead>
+          <tr>
+            <th>S.N.</th>
+            <th>BMI</th>
+            <th>Category</th>
+            <th>Time</th>
+            <th>Date</th>
+          </tr>
+      </thead>
+      <tbody>
+          {% for bmi in history%}
+          <tr>
+            <td>{{ forloop.counter }}</td>
+            <td>{{ bmi.bmi }}</td>
+            <td>{{ bmi.category}}</td>
+            <td>{{ bmi.created_at|date:"F d, Y" }}</td>
+            <td>{{ bmi.created_at|date:"H:i:s" }}</td>>
+          </tr>
+          {% empty %}
+          <tr>
+              <td colspan="2">No BMI history found.</td>
+          </tr>
+          {% endfor %}
+      </tbody>
   </table>
   </body>
 </html>

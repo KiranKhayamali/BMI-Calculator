@@ -12,13 +12,16 @@
   </head>
   <body>
     <!-- <h1>Home Page</h1> -->
-    <a href="{% url 'signup' %}" class="btn btn-primary">Signup</a>
-    <img src = "/images/body-mass-index-bmi-chart.jpg">
+    <a href="{% url 'signup' %}" class="btn btn-primary" style="float: right; margin: 10px;">Signup</a>
+    <a href="{% url 'login' %}" class="btn btn-primary" style="float: right; margin: 10px; margin-left:15px; margin-right:15px;">Login</a>
+    <!-- <img src = "/images/body-mass-index-bmi-chart.jpg" alt = "no image found"> -->
     <!-- <style>
         body {
           background-image: src = '/images/body-mass-index-bmi-chart.jpg';
         }
         </style> -->
+    <br>
+    <br>    
     <p>
         In the face of a mounting obesity crisis, the BMI calculator has emerged as a crucial population measurement tool. It assesses the connection between your weight and fat, aiding in identifying excess body fat and unraveling the health hazards that come with the extra weight.
         However, take note: the BMI calculator isn't flawless - it can overestimate for those with a muscular frame and underestimate for the athletically inclined.

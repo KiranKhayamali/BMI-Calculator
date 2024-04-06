@@ -2,7 +2,9 @@ from django.shortcuts import render, HttpResponse, redirect
 from django.contrib.auth import login, authenticate, logout, get_user_model
 from django.contrib.auth.models import User 
 from django.contrib.auth.decorators import login_required
+from django.utils import timezone
 from .models import History
+
 
 # Create your views here.
 def HomePage(request):
@@ -25,6 +27,9 @@ def calculate_bmi(request):
             category = 'Obessity'
         else :
             category = 'Extreme Obessity'
+        bmi_record = History(user = request.user, bmi = bmi, category = category, created_at = timezone.now())
+        print(bmi_record)
+        bmi_record.save()
         context = {'bmi': round(bmi, 2), 'category': category}
         return render(request, 'outcome.html', context)
     return render(request, 'calculate.html')
@@ -44,7 +49,7 @@ def calculate_bmi(request):
 #     return render(request, 'record.html', context)
 
 def history(request):
-    history = History.objects.filter(user=request.user).order_by('-created_at')
+    history = History.objects.filter(user=request.user).order_by('created_at')
     return render(request, 'record.html', {'history': history})
 #     # return render(request, 'record.html')
 
