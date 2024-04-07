@@ -1,21 +1,140 @@
 <!DOCTYPE html>
-<html>
-  <head>
-    <title>BMI Outcome</title>
-  </head>
-   <!-- Required meta tags -->
-   <meta charset="utf-8">
-   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<html lang="en">
+<head>
+    <title>Calculate BMI</title>
+ 
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;600&display=swap" rel="stylesheet">
+    <!--Stylesheet-->
+    <style media="screen">
+      *,
+*:before,
+*:after{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+body{
+    background-color: #080710;
+}
+.background{
+    width: 430px;
+    height: 520px;
+    position: absolute;
+    transform: translate(-50%,-50%);
+    left: 50%;
+    top: 50%;
+}
+form{
+    height: 600px;
+    width: 450px;
+    background-color: rgba(255,255,255,0.13);
+    position: absolute;
+    transform: translate(-50%,-50%);
+    top: 50%;
+    left: 50%;
+    border-radius: 10px;
+    backdrop-filter: blur(10px);
+    border: 2px solid rgba(255,255,255,0.1);
+    box-shadow: 0 0 40px rgba(8,7,16,0.6);
+    padding: 50px 35px;
+}
+form *{
+    font-family: 'Poppins',sans-serif;
+    color: #ffffff;
+    letter-spacing: 0.5px;
+    outline: none;
+    border: none;
+}
+form h3{
+    font-size: 32px;
+    font-weight: 500;
+    line-height: 42px;
+    text-align: center;
+}
 
-   <!-- Bootstrap CSS -->
-   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-  </head>
-  <body>
-    <h1>BMI Outcome</h1>
-    <p>Your BMI is: {{ bmi }}</p>
-    <p>You are: {{ category }}</p>
-    <style></style>
-    <a href="{% url 'calculate' %}" class="btn btn-primary">Calculate Again</a>
-    <a href="{% url 'history' %}" class="btn btn-primary">Past Records</a>
-  </body>
+label{
+    display: block;
+    margin-top: 30px;
+    font-size: 16px;
+    font-weight: 500;
+}
+input{
+    display: block;
+    height: 40px;
+    width: 100%;
+    background-color: rgba(255,255,255,0.07);
+    border-radius: 3px;
+    padding: 0 10px;
+    margin-top: 2px;
+    font-size: 14px;
+    font-weight: 300;
+}
+::placeholder{
+    color: #e5e5e5;
+}
+button{
+  font-size: 32px;
+    font-weight: 500;
+    line-height: 42px;
+    text-align: center;
+
+    margin-top: 14px;
+    width: 100%;
+    background-color: #ffffff;
+    color: #080710;
+    padding: 30px;
+    font-size: 18px;
+    font-weight: 600;
+    border-radius: 5px;
+    cursor: pointer;
+}
+.button {
+    display: inline-block;
+    padding: 10px 20px;
+    margin: 7px;
+    background-color: #007bff; /* You can customize the background color */
+    color: #ffffff; /* You can customize the text color */
+    text-decoration: none;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.button:hover {
+    background-color: #0056b3; /* You can customize the hover background color */
+}
+
+img{
+  height: 200px;
+  weight: 200px;
+}
+
+    </style>
+</head>
+<body>
+    <div class="background">
+    </div>
+    <form>
+      {% csrf_token %} 
+      <h1>BMI Outcome</h1>
+      <p>Your BMI is: {{ bmi }}</p>
+      <p>You are: {{ category }}</p>
+      {% if category == "Under Weight" %}
+      <img src="img", alt="Under">
+      {% elif category == "Normal Weight" %}
+      <img src="img", alt="Normal">
+      {% elif category == "Over Weight" %}
+      <img src="img", alt="Over">
+      {% elif category == "Obessity" %}
+      <img src="img", alt="Obese">
+      {% else %}
+      <img src="img", alt="Extreme">
+    {% endif %}
+      <br><br><br><br>
+      <a href="{% url 'calculate' %}" class="button">Calculate Again</a>
+      <a href="{% url 'history' %}" class="button">Past Records</a>
+    </form>
+</body>
 </html>
