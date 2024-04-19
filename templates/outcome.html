@@ -108,7 +108,17 @@ button{
 
 img{
   height: 200px;
-  weight: 200px;
+  left: 50%;
+  /* width: 200px; */
+  /* margin-left: auto;
+  margin-right: auto;
+  width: 50%; */
+}
+.center {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  /* width: 50%; */
 }
 
     </style>
@@ -121,18 +131,25 @@ img{
       <h1>BMI Outcome</h1>
       <p>Your BMI is: {{ bmi }}</p>
       <p>You are: {{ category }}</p>
+      <br>
       {% if category == "Under Weight" %}
-      <img src="img", alt="Under">
+      <img src="/static/images/underweight.jpeg", alt="Under", class="center">
+      <p>You Are Skinny! Eat More Nutrient Diet</p>
       {% elif category == "Normal Weight" %}
-      <img src="img", alt="Normal">
+      <img src="/static/images/normalweight.jpg", alt="Normal", class="center">
+      <p>Congrats! You Are Normal</p>
       {% elif category == "Over Weight" %}
-      <img src="img", alt="Over">
+      <img src="/static/images/overweight.png", alt="Over", class="center">
+      <p>You Are Bloating A Little! Eat Healthy Diet And Exercises</p>
       {% elif category == "Obessity" %}
-      <img src="img", alt="Obese">
+      <img src="/static/images/Peter_Griffin.png", alt="Obese", class="center">
+      <p>You Are Fat! Eat Less And Join Gym ASAP</p>
       {% else %}
-      <img src="img", alt="Extreme">
+      <img src="/static/images/extremeobesse.jpg", alt="Extreme", class="center">
+      <p>Oh Lord!You Are Fat As A Hippo</p>
+
     {% endif %}
-      <br><br><br><br>
+      <br><br><br>  
       <a href="{% url 'calculate' %}" class="button">Calculate Again</a>
       <a href="{% url 'history' %}" class="button">Past Records</a>
     </form>
