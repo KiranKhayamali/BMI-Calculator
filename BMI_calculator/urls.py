@@ -26,5 +26,4 @@ urlpatterns = [
     path('calculate/', views.calculate_bmi, name = 'calculate'),
     path('logout/', views.LogoutPage, name='logout'),
     path('record/', views.history, name='history'),
-    #  path('record/', views.user_history, name='history'),
 ]

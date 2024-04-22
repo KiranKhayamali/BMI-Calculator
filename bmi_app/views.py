@@ -34,24 +34,9 @@ def calculate_bmi(request):
         return render(request, 'outcome.html', context)
     return render(request, 'calculate.html')
 
-# User = get_user_model()
-# def display_history(user):
-#     history = History.objects.filter(user=user).order_by('-created_at')
-#     print("History:")
-#     for bmi in history:
-#         print(f"{bmi.date:%B %d, %Y}: {bmi.bmi}")
-
-# def user_history(request):
-#     user = User.objects.get(username= request.username)
-#     history = History.objects.filter(user=user).order_by('-created_at')
-#     # display_history(user) 
-#     context = {'user': user}
-#     return render(request, 'record.html', context)
-
 def history(request):
     history = History.objects.filter(user=request.user).order_by('created_at')
     return render(request, 'record.html', {'history': history})
-#     # return render(request, 'record.html')
 
 def SignupPage(request):
     if request.method == 'POST':
